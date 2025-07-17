@@ -1,0 +1,17 @@
+<!-- templates/car_detail.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ car.title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <a href="{% url 'index' %}" class="btn btn-secondary mb-3">&larr; Назад к списку машин</a>
+    <h1>{{ car.title }}</h1>
+    <img src="{{ car.image.url }}" alt="{{ car.title }}" style="max-width: 100%; height: auto;">
+    <p>{{ car.description }}</p>
+</div>
+</body>
+</html>
