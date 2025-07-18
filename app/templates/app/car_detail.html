@@ -1,4 +1,3 @@
-<!-- templates/car_detail.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -11,7 +10,9 @@
     <a href="{% url 'index' %}" class="btn btn-secondary mb-3">&larr; Назад к списку машин</a>
     <h1>{{ car.title }}</h1>
     <img src="{{ car.image.url }}" alt="{{ car.title }}" style="max-width: 100%; height: auto;">
-    <p>{{ car.description }}</p>
+    <div class="alert alert-secondary mt-3" role="alert">
+    <strong>Описание:</strong> {{ car.description }}
+</div>
 </div>
 </body>
 </html>
