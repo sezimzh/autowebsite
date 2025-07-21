@@ -37,3 +37,35 @@ def create_car(request):
 
     categories = Category.objects.all()  
     return render(request, 'app/create_car.html', {'categories': categories})
+
+def update_car(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+
+    if request.method == 'POST':
+        car.title = request.POST.get('title')
+        car.model = request.POST.get('model')
+        car.year = request.POST.get('year')
+        car.price = request.POST.get('price')
+        category_id = request.POST.get('category')
+        car.description = request.POST.get('description')
+
+        if request.FILES.get('image'):
+            car.image = request.FILES['image']
+
+        car.category = get_object_or_404(Category, id=category_id)
+        car.save()
+
+        return redirect('car_detail', pk=car.pk)
+
+    categories = Category.objects.all()
+    return render(request, 'app/update_car.html', {'car': car, 'categories': categories})
+
+
+def delete_car(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+
+    if request.method == 'POST':
+        car.delete()
+        return redirect('index')
+
+    return render(request, 'app/delete_car.html', {'car': car})
