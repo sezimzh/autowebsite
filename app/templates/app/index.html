@@ -13,6 +13,13 @@
             font-weight: bold;
         }
     </style>
+    {% if user.is_authenticated %}
+    <p>Привет, {{ user.username }}!</p>
+    <a href="{% url 'logout' %}" class="btn btn-outline-secondary">Выйти</a>
+     {% else %}
+    <a href="{% url 'login' %}" class="btn btn-outline-primary">Войти</a>
+    <a href="{% url 'register' %}" class="btn btn-outline-success">Регистрация</a>
+    {% endif %}
 </head>
 <body>
 <div class="container mt-4">

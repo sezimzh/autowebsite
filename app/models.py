@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     title=models.CharField(max_length=223)
@@ -13,6 +14,8 @@ class Car(models.Model):
     image=models.ImageField(upload_to='media/car_images')
     category=models.ForeignKey(Category,on_delete=models.PROTECT)
     description = models.TextField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+   
     
     def __str__(self):
         return self.title
